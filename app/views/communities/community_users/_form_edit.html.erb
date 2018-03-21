@@ -1,0 +1,12 @@
+<%= form_with model: community_user, url: community_preferences_path(@community), scope: :community_user, local: true do |f| %>
+
+  <div class="form-group">
+    <%= f.label :display_name, 'Display Name' %>
+    <%= f.text_field :display_name, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

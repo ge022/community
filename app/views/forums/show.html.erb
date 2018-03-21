@@ -1,0 +1,60 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="forum col-12 col-xl-6">
+
+    <% if :notice %>
+      <p id="notice" class="text-left"><%= notice %></p>
+    <% end %>
+
+    <div class="text-right">
+      <%= link_to 'Back', community_forums_path(@community.id), class: 'btn btn-secondary mb-2' %>
+      <% if user_is_author?(@forum) %>
+        <%= link_to 'Edit', edit_community_forum_path(:id => @forum.id), class: 'btn btn-success mb-2' %>
+      <% end %>
+    </div>
+
+    <div class="table-responsive">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" colspan="3">
+              <h3 class="mt-0 mb-0">
+                <%= @forum.title %>
+              </h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="author">
+              <h5>Posted by:</h5>
+              <%= member_display_name(@forum) %>
+            </td>
+            <td colspan="2">
+              <p>
+                <%= @forum.post %>
+              </p>
+            </td>
+          </tr>
+
+          <% if user_is_member?(@community) %>
+            <tr>
+              <td colspan="3" class="text-right">
+
+                <%= render 'reply_form' %>
+
+              </td>
+            </tr>
+          <% end %>
+
+          <%= render partial: 'forums/replies/reply', collection: @forum.forum_replies, as: :forum_reply %>
+
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

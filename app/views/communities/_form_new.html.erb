@@ -1,0 +1,58 @@
+<%= form_with(model: community, local: true) do |f| %>
+
+  <% if community.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(community.errors.count, "error") %> prohibited this community from being saved:</h4>
+
+      <ul>
+        <% community.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+      <%= f.label :name, "Community name", class: 'col-md-2 col-form-label' %>
+    <div class="col-md-4">
+      <%= f.text_field :name, id: :community_name %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :description, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-4">
+      <%= f.text_area :description, class: 'form-control', id: :community_description, rows: '3' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :promo, class: 'col-md-2 col-form-label' %>
+    <div class="col-md-4">
+      <%= f.text_field :promo, id: :community_promo %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-2">
+      <div class="form-check">
+        <%= f.check_box :private, class: 'form-check-input', id: :community_private %>
+        <%= f.label :private, class: 'form-check-label' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= fields_for :member do |member_field| %>
+      <%= member_field.label :user_display_name, 'Your display name:', class: 'col-md-2 col-form-label' %>
+      <div class="col-md-4">
+        <%= member_field.text_field :user_display_name, id: :user_display_name %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

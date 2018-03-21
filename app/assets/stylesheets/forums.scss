@@ -1,0 +1,28 @@
+// Place all the styles related to the Forums controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h3 {
+  margin-top: 10px;
+}
+
+tr.forum-reply-reply {
+  display: none;
+}
+
+.forum table td {
+  word-break: break-all;
+}
+
+.forum table td.author {
+  width: 20%;
+  word-break: break-word;
+}
+
+.table td {
+  border: none;
+}
+
+.table tbody tr:nth-of-type(3n+0) {
+  border-top: 1px solid #dee2e6;
+}

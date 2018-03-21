@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Forum Replies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Forum</th>
+      <th>Community</th>
+      <th>Post</th>
+      <th>Author</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forum_replies.each do |forum_reply| %>
+      <tr>
+        <td><%= forum_reply.forum %></td>
+        <td><%= forum_reply.community %></td>
+        <td><%= forum_reply.post %></td>
+        <td><%= forum_reply.author_id %></td>
+        <td><%= link_to 'Show', forum_reply %></td>
+        <td><%= link_to 'Edit', edit_forum_reply_path(forum_reply) %></td>
+        <td><%= link_to 'Destroy', forum_reply, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Forum Reply', new_forum_reply_path %>

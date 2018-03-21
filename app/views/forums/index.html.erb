@@ -1,0 +1,46 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="forum col-12 col-md-6">
+
+    <p id="notice"><%= notice %></p>
+
+    <h2>
+      <%= @community.name + ' Forum' %>
+    </h2>
+
+    <div class="table-responsive">
+
+      <% if user_is_member?(@community) %>
+        <%= link_to 'New Thread', new_community_forum_path, class: 'btn btn-primary mb-3' %>
+      <% end %>
+
+      <table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th scope="col">General Discussions</th>
+            <th scope="col" colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @forums.each do |post| %>
+
+            <tr>
+              <td>
+                <%= link_to post.title, community_forum_path(:id => post.id) %>
+              </td>
+              <td><%= link_to 'Show', community_forum_path(:id => post.id), class: 'btn btn-outline-primary btn-sm' %></td>
+              <% if user_signed_in? && user_is_author?(post) %>
+                <td><%= link_to 'Edit', edit_community_forum_path(:id => post.id), class: 'btn btn-outline-success btn-sm' %></td>
+                <td><%= link_to 'Delete', community_forum_path(:id => post.id), class: 'btn btn-outline-danger btn-sm', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
+            </tr>
+
+          <% end %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

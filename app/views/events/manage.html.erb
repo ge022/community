@@ -1,0 +1,51 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="event-list col-12 col-md-8">
+
+    <p id="notice"><%= notice %></p>
+
+    <h2>
+      Manage My Events
+    </h2>
+
+    <div class="table-responsive">
+
+      <div class="d-flex mb-2">
+        <%= link_to 'New Event', new_community_event_path(@community), class: 'btn btn-primary mr-1' %>
+        <%= link_to 'Back to Upcoming Events', community_events_path, class: 'btn btn-secondary mr-1' %>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr class="d-flex">
+            <th class="col-4">Title</th>
+            <th class="col-5">Time</th>
+            <th class="col-3">Manage</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @events.each do |event| %>
+            <tr class="d-flex">
+              <td class="col-4 text-truncate">
+                <%= link_to event.title, community_event_path(@community, event), class: 'text-primary' %>
+              </td>
+              <td class="col-5">
+                Starting: <%= Time.zone.parse(event.start_time.to_s).strftime('%a, %B %d at %I:%M %p').html_safe %>
+                <br>
+                Ending: <%= Time.zone.parse(event.end_time.to_s).strftime('%a, %B %d at %I:%M %p').html_safe %>
+              </td>
+              <td>
+                <%= link_to 'Edit', edit_community_event_path(@community, event), class: 'btn btn-outline-success mr-2' %>
+                <%= link_to 'Delete', community_event_path(@community, event), class: 'btn btn-outline-danger mr-2', method: :delete, data: {confirm: 'Are you sure?'} %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

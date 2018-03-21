@@ -1,0 +1,11 @@
+<div class="container-fluid" id="wrapper">
+
+  <h3>Join <%= @community.name %></h3>
+
+  <%= render 'form_join', community_user: @community_user %>
+
+  <div class="bottom-links">
+    <%= link_to 'Back', @community %>
+  </div>
+
+</div>

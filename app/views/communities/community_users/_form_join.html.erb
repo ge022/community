@@ -1,0 +1,24 @@
+<%= form_with(model: community_user, scope: :community_user, url: community_join_path, local: true) do |f| %>
+
+  <% if community_user.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(community_user.errors.count, "error") %> prohibited this community from being saved:</h4>
+
+      <ul>
+        <% community_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :display_name, 'Display Name:' %>
+    <%= f.text_field :display_name, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Join", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

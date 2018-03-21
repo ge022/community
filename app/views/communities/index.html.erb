@@ -1,0 +1,27 @@
+<div class="container-fluid" id="wrapper">
+
+  <h2>Community Directory</h2>
+  <p id="notice"><%= notice %></p>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Community</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @communities.each do |community| %>
+        <tr>
+          <td><%= link_to community.name, community %></td>
+          <td><%= community.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Go to My Communities', my_communities_path, class: 'btn btn-primary' %>
+  <%= link_to 'Create a Community', new_community_path, class: 'btn btn-secondary' %>
+
+</div>

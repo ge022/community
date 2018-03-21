@@ -1,0 +1,35 @@
+<div class="container-fluid" id="wrapper">
+
+  <h3>Change Role</h3>
+
+  <%= form_with model: @comm_user, url: community_role_path(@community), scope: :community_user, local: true do |f| %>
+
+    <div class="form-group row">
+      <%= f.label :display_name, 'Display name', class: 'col-md-2 col-form-label' %>
+      <div class="col-md-4">
+        <%= f.text_field :display_name, class: 'form-control-plaintext', readonly: true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :role, class: 'col-md-2 col-form-label' %><br/>
+      <div class="col-md-4">
+        <%= f.select :role, options_for_select(['member', 'admin'], @comm_user.role),
+                     class: 'col-md-3',
+                     required: true %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+
+  <div class="bottom-links">
+      <%= link_to('Back to Community Members', community_users_path) %>
+    </div>
+
+</div>
+
+

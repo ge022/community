@@ -1,0 +1,36 @@
+
+<div class="container-fluid" id="wrapper">
+<p id="notice"><%= notice %></p>
+
+<h2>Articles</h2>
+  <div class="table-responsive">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Article</th>
+      <th scope="col">Author</th>
+      <th scope="col" colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.article %></td>
+        <td><%= article.title %></td>
+        <td><%= link_to 'Show', community_article_path(:id => article.id), class: 'btn btn-outline-primary btn-sm' %></td>
+        <% if user_is_author?(article) %>
+        <td><%= link_to 'Edit', edit_community_article_path(:id => article.id), class: 'btn btn-outline-success btn-sm' %></td>
+        <td><%= link_to 'Destroy', community_article_path(:id => article.id), class: 'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' }  %></td>
+        <% end %>
+          </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+
+<br>
+  <% if user_is_member?(@community) %>
+<%= link_to 'New Article', new_community_article_path, class: 'btn btn-primary' %>
+    <% end %>
+</div>

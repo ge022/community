@@ -1,0 +1,48 @@
+<tr>
+  <%= '<td></td>'.html_safe if reply_is_nested?(forum_reply) %>
+  <td class="author" %>
+    <h6>Reply by:</h6>
+    <%= member_display_name(forum_reply) %>
+  </td>
+  <td colspan="<%= reply_is_nested?(forum_reply) ? '1' : '2' %>">
+    <p>
+      <%= forum_reply.post %>
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="3" class="text-right p-0">
+    <% if user_is_member?(@community) %>
+      <a href="#" class="btn btn-link text-dark reply" data-reply="<%= forum_reply.id %>">
+        Reply
+      </a>
+    <% end %>
+    <% if user_is_author?(forum_reply) %>
+      <%= link_to 'Edit', edit_community_forum_forum_reply_path(@community.id, @forum.id, forum_reply.id), class: 'btn btn-link text-success' %>
+      <%= link_to 'Delete', community_forum_forum_reply_path(@community.id, @forum.id, forum_reply.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-link text-danger' %>
+    <% end %>
+  </td>
+</tr>
+
+<tr class="forum-reply-reply" data-reply="<%= forum_reply.id %>">
+  <%= '<td></td>'.html_safe if reply_is_nested?(forum_reply) %>
+  <td colspan="<%= reply_is_nested?(forum_reply) ? '2' : '3' %>" class="text-right">
+    <%= form_with(model: [forum_reply, ForumReply.new], url: community_forum_forum_reply_reply_path(@community.id, @forum.id, forum_reply.id), local: true, class: 'needs-validation', html: {novalidate: 'novalidate'}) do |form| %>
+
+      <div class="form-group">
+        <%= form.label :post, class: 'd-none' %>
+        <%= form.text_area :post, id: :reply_post, class: 'form-control', required: true %>
+        <div class="invalid-feedback">
+          Reply is required
+        </div>
+      </div>
+
+      <div class="form-group-inline text-left">
+        <%= form.submit "Reply", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </td>
+</tr>
+
+<%= render partial: 'forums/replies/reply', collection: forum_reply.forum_replies, nested: true, as: :forum_reply %>

@@ -1,0 +1,44 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*-- Home --*/
+
+#hero-image {
+  /* Image */
+  background-image: image-url("laptop-bw.jpg");
+  /* Full height */
+  height: 100%;
+  margin-top: 70px;
+  /* Center and scale */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#hero-textblock {
+  padding-top: 8%;
+  padding-left: 5%
+}
+
+h1 {
+  color: gold;
+  font-family: 'Satisfy', cursive;
+  font-size: 5em;
+}
+
+#hero-intro {
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.1em;
+  line-height: 2em;
+  margin-bottom: 20px;
+}
+
+
+/*-- My Communities --*/
+
+.my-communities {
+  margin-top: 50px;
+}

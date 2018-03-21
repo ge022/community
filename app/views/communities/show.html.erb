@@ -1,0 +1,24 @@
+<div class="container-fluid" id="wrapper">
+
+<!-- community nav -->
+<% if user_is_member?(@community) %>
+  <%= link_to 'Leave', community_leave_path(@community), method: :delete, data: {confirm: 'Are you sure?'} %>
+<% else %>
+  <%= link_to 'Join', community_join_path(@community) %>
+<% end %> |
+<%= link_to 'Articles', community_articles_path(@community.id)%> |
+<%= link_to 'Events', community_events_path(@community.id) %> |
+<%= link_to 'Forum', community_forums_path(:community_id => @community.id)%>
+
+  <!-- Community content -->
+
+  <p id="notice"><%= notice %></p>
+
+  <p id="welcome">Welcome to</p>
+  <h2><%= @community.name %></h2>
+
+  <p class="comm_desc">
+    <%= @community.description %>
+  </p>
+
+</div>

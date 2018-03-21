@@ -1,0 +1,27 @@
+<%= form_with(model: article_comment, url: community_article_article_comment_path(@community.id, @article.id, @article_comment.id), local: true, class: 'needs-validation', html: {novalidate: 'novalidate'}) do |form| %>
+
+  <% if article_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article_comment.errors.count, "error") %> prohibited this article_comment from being saved:</h2>
+
+      <ul>
+        <% article_comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, id: :article_comment_post, class: 'form-control', required: true %>
+    <div class="invalid-feedback">
+      Reply is required
+    </div>
+  </div>
+
+  <div class="form-group-inline">
+    <%= form.submit "Update", class: "btn btn-primary" %>
+    <%= link_to 'Back', community_article_path(@community.id, @article.id), class: "btn btn-secondary" %>
+  </div>
+<% end %>

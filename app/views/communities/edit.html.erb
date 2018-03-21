@@ -1,0 +1,12 @@
+<div class="container-fluid" id="wrapper">
+
+  <h3>Edit Community Details</h3>
+
+  <%= render 'form', community: @community %>
+
+  <div class="bottom-links">
+    <%= link_to 'Go to Community', @community %> |
+    <%= link_to 'Community Directory', communities_path %>
+  </div>
+
+</div>

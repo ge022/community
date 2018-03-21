@@ -1,0 +1,11 @@
+<div class="container-fluid" id="wrapper">
+
+  <h3>New Member</h3>
+
+  <%= render 'form', member: @member %>
+
+  <div class="bottom-links">
+    <%= link_to 'Back', communities_path + "/" + params["member"]["community_id"] %>
+  </div>
+
+</div>

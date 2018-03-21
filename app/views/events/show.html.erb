@@ -1,0 +1,40 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="forum col-12 col-md-8">
+
+    <% if :notice %>
+      <p id="notice" class="text-left"><%= notice %></p>
+    <% end %>
+
+    <h3><%= @event.title %></h3>
+
+    <p>
+      <% if @event.start_time.to_date == @event.end_time.to_date %>
+        <strong>Date:</strong> <%= Time.zone.parse(@event.start_time.to_s).strftime('%A, %B %d') %>
+      <% else %>
+        <strong>Dates:</strong> <%= Time.zone.parse(@event.start_time.to_s).strftime('%A, %B %d') %> <strong>-</strong> <%= Time.zone.parse(@event.end_time.to_s).strftime('%a, %B %d') %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Time:</strong> <%= Time.zone.parse(@event.start_time.to_s).strftime('%I:%M %p') %>
+      <% if @event.start_time.to_time != @event.end_time.to_time %>
+        <strong>-</strong> <%= Time.zone.parse(@event.end_time.to_s).strftime('%I:%M %p') %>
+      <% end %>
+    </p>
+
+    <hr>
+
+    <p>
+      <%= @event.description %>
+    </p>
+
+    <hr>
+
+    <div class="bottom-links">
+      <%= link_to 'Back to Upcoming Events', community_events_path, class: 'btn btn-outline-secondary' %>
+    </div>
+
+  </div>
+
+</div>

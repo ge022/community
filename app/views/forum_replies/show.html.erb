@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Forum:</strong>
+  <%= @forum_reply.forum %>
+</p>
+
+<p>
+  <strong>Community:</strong>
+  <%= @forum_reply.community %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @forum_reply.post %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @forum_reply.author_id %>
+</p>
+
+<%= link_to 'Edit', edit_forum_reply_path(@forum_reply) %> |
+<%= link_to 'Back', forum_replies_path %>

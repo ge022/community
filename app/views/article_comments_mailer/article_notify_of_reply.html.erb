@@ -1,0 +1,18 @@
+
+<h3><%= @responding_to_member.display_name %>,</h3>
+
+<%= @responding_member %> replied to your post about:
+
+<p class="blockquote" style="font: 14px/22px normal helvetica, sans-serif; margin-top: 10px; margin-bottom: 10px; margin-left: 50px; padding-left: 15px; border-left: 3px solid #ccc;">
+  <%= @about %>
+</p> <br>
+
+with: <br>
+
+<p class="blockquote" style="font: 14px/22px normal helvetica, sans-serif; margin-top: 10px; margin-bottom: 10px; margin-left: 50px; padding-left: 15px; border-left: 3px solid #ccc;">
+  <%= @responding_with.comment %>
+</p>
+
+<h4>
+  Check out the reply <%= link_to 'here.', community_forum_url(@community.id, @article.id) %>
+</h4>

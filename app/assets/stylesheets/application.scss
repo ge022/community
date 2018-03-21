@@ -1,0 +1,83 @@
+/*
+ *= require simple_calendar
+ *= require style
+ *= require_self
+*/
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+main {
+  height: 100%;
+}
+
+#wrapper {
+  padding-left: 80px;
+  padding-top: 120px;
+}
+
+h2 {
+  color: gold;
+  font-family: 'Satisfy', cursive;
+  font-size: 3em;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+h3 {
+  color: gold;
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-size: 1.25em;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+#welcome {
+  color: black;
+  font-family: 'Raleway', sans-serif;
+  font-size: .9em;
+  letter-spacing: .25em;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.message {
+  color: red;
+}
+
+.bottom-links {
+  margin: 30px 0;
+}
+
+
+/*-- navbar styles --*/
+
+.navbar-brand {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-family: 'Satisfy', cursive;
+  font-size: 2em;
+}
+
+li.nav-item.active a.nav-link {
+ color: gold !important;
+}
+
+@media (min-width: 992px) {
+  .navbar li {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  input.form-control.mr-sm-2 {
+    margin-left: 2em;
+  }
+}
+
+/*-- end navbar styles --*/

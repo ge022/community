@@ -1,0 +1,90 @@
+<div class="container-fluid" id="wrapper">
+
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
+  <div class="member-communities col-12 col-md-6">
+
+    <h2>My Communities</h2>
+
+    <section>
+
+      <% if @member_communities.any? %>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Communities I have joined...</th>
+                <th scope="col" colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @member_communities.each do |community| %>
+                <tr>
+                  <td scope="row"><%= link_to community.name, community %></td>
+                  <td><%= link_to 'Visit', community, class: 'btn btn-outline-primary btn-sm' %></td>
+                  <td><%= link_to 'Preferences', community_user_preferences_path(community.id), class: 'btn btn-outline-success btn-sm' %></td>
+                  <td><%= link_to 'Leave', community_leave_path(community.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-outline-danger btn-sm' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      <% else %>
+
+        <p class="message">You haven't joined any communities yet</p>
+
+      <% end %>
+
+      <%= link_to 'Browse Communities', communities_path, class: 'btn btn-secondary' %>
+
+    </section>
+
+  </div>
+
+
+  <div class="my-communities col-12 col-md-6">
+
+    <section>
+
+      <% if @my_communities.any? %>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Communities I manage...</th>
+              <th scope="col" colspan="4"></th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @my_communities.each do |community| %>
+                <tr>
+                  <td scope="row"><%= link_to community.name, community %></td>
+                  <td><%= link_to 'Visit', community, class: 'btn btn-outline-primary btn-sm' %></td>
+                  <td><%= link_to 'Edit', edit_community_path(community), class: 'btn btn-outline-success btn-sm' %></td>
+                  <td><%= link_to 'Members', community_users_path(community), class: 'btn btn-outline-success btn-sm' %></td>
+                  <td><%= link_to 'Delete', community, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-outline-danger btn-sm' %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+
+      <% else %>
+
+        <p class="message">You don't manage any communities</p>
+
+      <% end %>
+
+      <%= link_to 'Create a Community', new_community_path, class: 'btn btn-secondary' %>
+
+    </section>
+
+  </div>
+
+</div>

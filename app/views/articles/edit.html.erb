@@ -1,0 +1,9 @@
+<div class="container-fluid" id="wrapper">
+<h3>Editing Article</h3>
+
+<%= render 'form', article: @article, new: community_article_path(@community.id, @article.id)  %>
+  <div class="bottom-links">
+<%= link_to 'Show', community_article_path(:id => @article.id)%> |
+<%= link_to 'Back', community_articles_path %>
+  </div>
+</div>

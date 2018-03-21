@@ -1,0 +1,27 @@
+<div class="container-fluid" id="wrapper">
+
+  <p id="notice"><%= notice %></p>
+
+  <h2>
+    <%= 'Upcoming Events' %>
+  </h2>
+
+  <div class="d-flex mb-2">
+    <% if user_is_member?(@community) %>
+      <%= link_to 'New Event', new_community_event_path(@community), class: 'btn btn-primary mr-1' %>
+      <%= link_to 'Manage My Events', community_events_manage_path, class: 'btn btn-secondary mr-1' %>
+    <% end %>
+    <%= link_to 'View as List', community_events_path, class: 'btn btn-secondary ml-auto' %>
+  </div>
+
+  <%= month_calendar events: @events do |date, events| %>
+    <%= date.day %>
+
+    <% events.each do |event| %>
+      <div>
+        <%= link_to event.title, community_event_path(@community, event) %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>

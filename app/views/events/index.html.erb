@@ -1,0 +1,51 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="event-list col-12 col-md-8">
+
+    <p id="notice"><%= notice %></p>
+
+    <h2>
+      <%= 'Upcoming Events' %>
+    </h2>
+
+    <div class="table-responsive">
+
+      <div class="d-flex mb-2">
+        <% if user_is_member?(@community) %>
+          <%= link_to 'New Event', new_community_event_path(@community), class: 'btn btn-primary mr-1' %>
+          <%= link_to 'Manage My Events', community_events_manage_path, class: 'btn btn-secondary mr-1' %>
+        <% end %>
+        <%= link_to 'View as Calendar', community_calendar_path, class: 'btn btn-secondary ml-auto' %>
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr class="d-flex">
+            <th class="col-6">Title</th>
+            <th class="col-3">Starting</th>
+            <th class="col-3">Ending</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @events.each do |event| %>
+            <tr class="d-flex">
+              <td class="col-6 text-truncate">
+                <%= link_to event.title, community_event_path(@community, event), class: 'text-primary' %>
+              </td>
+              <td class="col-3">
+                <%= Time.zone.parse(event.start_time.to_s).strftime('%a, %B %d <br>at %I:%M %p').html_safe %>
+              </td>
+              <td class="col-3">
+                <%= Time.zone.parse(event.end_time.to_s).strftime('%a, %B %d <br>at %I:%M %p').html_safe %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

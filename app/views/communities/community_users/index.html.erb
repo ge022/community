@@ -1,0 +1,48 @@
+<div class="container-fluid" id="wrapper">
+
+  <div class="col">
+    <div class="section-header">
+      <h2>Members of <%= @community.name %></h2>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-danger" role="alert"><%= flash[:notice] %></div>
+    <% end %>
+
+    <% if @community.members.any? %>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Display Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col" colspan="2"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @community.members.each do |member| %>
+            <tr>
+              <td><%= member.display_name %></td>
+              <td><%= member.email %></td>
+              <td><%= member.role %></td>
+              <td><%= link_to 'Change Role', community_role_path(@community.id, member), class: 'btn btn-outline-success btn-sm' %></td>
+              <td><%= link_to 'Kick', community_kick_user_path(@community.id, member.id), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-outline-danger btn-sm' %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+
+    <% end %>
+
+    <%= link_to 'Invite', community_invite_path(@community), class: 'btn btn-primary' %>
+
+    <div class="bottom-links">
+      <%= link_to 'Back to My Communities', my_communities_path %>
+    </div>
+
+  </div>
+
+</div>
